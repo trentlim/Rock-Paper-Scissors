@@ -7,36 +7,74 @@ function computerPlay() {
     return choices[Math.floor(Math.random() * 3)];
 }
 
-function popUp(winner) {
-    overlay = document.querySelector('#modal-overlay');
+function endGame(winner) {
+    const overlay = document.querySelector('#modal-overlay');
+    let icon = overlay.querySelector('img');
+    let message = overlay.querySelector('h2');
+    const button = overlay.querySelector('button');
+
+
+    if (winner == 'player') {
+        icon.src = '../img/trophy.png';
+        message.innerHTML = 'You won the game!';
+    } else if (winner == 'computer') {
+        icon.src = '../img/sad-face.png';
+        message.innerHTML = 'You lost the game!';
+    }
+
     overlay.classList.toggle('hidden');
     overlay.classList.toggle('flex');
+
+    button.addEventListener('click', () => {
+        overlay.classList.toggle('hidden');
+        overlay.classList.toggle('flex');
+        playerScore = 0;
+        computerScore = 0;
+        document.querySelector('#player-score').innerHTML = playerScore;
+        document.querySelector('#computer-score').innerHTML = computerScore;
+    })
 }
 
-function increment(winner) {
+function displayMessage(winner, playerSelection, computerSelection) {
+    const message = document.querySelector('#message');
+    let winnerMessage = message.querySelector('h2');
+    let result = message.querySelector('h3');
+
     if (winner == 'player') {
-        playerScore++;
+        winnerMessage.innerHTML = 'You win!';
+        result.innerHTML = `You chose ${playerSelection} and computer chose ${computerSelection}`;
+    } else if (winner == 'computer') {
+        winnerMessage.innerHTML = 'Computer wins!';
+        result.innerHTML = `You chose ${playerSelection} and computer chose ${computerSelection}`;
     } else {
-        computerScore++;
+        winnerMessage.innerHTML = 'It\'s a tie!';
+        result.innerHTML = `You both chose ${playerSelection}`;
     }
 
-    document.querySelector('#player-score').innerHTML = playerScore;
-    document.querySelector('#computer-score').innerHTML = computerScore;
+    message.classList.remove('invisible');
 }
+
 
 function playRound(playerSelection, computerSelection) {
-    let winner = '';
-
-    if (playerSelection == 'rock' && computerSelection == 'paper' ||
+    if (playerSelection == computerSelection) {
+        displayMessage('tie', playerSelection, computerSelection);
+    } else if (playerSelection == 'rock' && computerSelection == 'paper' ||
         playerSelection == 'paper' && computerSelection == 'scissors' ||
         playerSelection == 'scissors' && computerSelection == 'rock') {
-        winner = 'computer';
+        computerScore++;
+        document.querySelector('#computer-score').innerHTML = computerScore;
+        displayMessage('computer', playerSelection, computerSelection);
     } else {
-        winner = 'player';
+        playerScore++;
+        document.querySelector('#player-score').innerHTML = playerScore;
+        displayMessage('player', playerSelection, computerSelection);
     }
 
-    // popUp(winner);
-    increment(winner);
+    if (playerScore == 5) {
+        endGame('player');
+    } else if (computerScore == 5) {
+        endGame('computer');
+    }
 }
 
 buttons.forEach(e => e.addEventListener('click', () => {
