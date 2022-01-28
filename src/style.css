@@ -1,0 +1,38 @@
+body {
+    background: linear-gradient(90deg, #000000, #220010, #080024);
+    background-size: 300% 300%;
+    animation: gradient 5s alternate infinite;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+}
+
+.btn {
+    @apply hover:scale-105 transition-all active:scale-100 duration-[250ms];
+}
+
+.btn-choice {
+    @apply bg-gray-50 hover:scale-105 transition-all active:scale-100 active:bg-gray-200 duration-[250ms];
+
+    border-radius: 10%;
+    width: 25vw;
+    max-width: 12rem;
+    height: 25vw;
+    max-height: 12rem;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

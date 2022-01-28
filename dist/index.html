@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body class="flex items-center justify-center h-screen text-gray-50">
+    <div class="w-4/5 flex flex-col items-center space-y-6">
+        <h1 class="font-game text-center" style="font-size: clamp(1.5rem, 5vw, 3.5rem);">ROCK PAPER SCISSORS</h1>
+        <div class="flex justify-center" style="gap: min(3vw, 1.5rem);">
+            <button class="btn btn-choice" id="rock-btn"><img src="../img/rock.png" alt="rock" class="w-3/4 h-3/4 mx-auto"></button>
+            <button class="btn btn-choice" id="paper-btn"><img src="../img/paper.png" alt="paper" class="w-3/4 h-3/4 mx-auto"></button>
+            <button class="btn btn-choice" id="scissors-btn"><img src="../img/scissors.png" alt="scissors" class="w-3/4 h-3/4 mx-auto"></button>
+        </div>
+        <div class="flex justify-center space-x-2 text-center w-1/2" style="width: clamp(18rem, 50%, 60rem);">
+            <div class="w-1/2">
+                <h2 class="font-game" style="font-size: clamp(1.15rem, 2.5vw, 2rem);">Player</h2>
+                <h3 class="font-game" style="font-size: clamp(0.92rem, 2vw, 1.6rem);" id="player-score">0</h3>
+            </div>
+            <div class="w-1/2">
+                <h2 class="font-game" style="font-size: clamp(1.15rem, 2.5vw, 2rem);">Computer</h2>
+                <h3 class="font-game" style="font-size: clamp(0.92rem, 2vw, 1.6rem);" id="computer-score">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-3 uppercase font-serif font-extralight">
+        Copyright &copy; Trent Lim 2022
+    </footer>
+
+    <div class="bg-black absolute inset-0 bg-opacity-50 justify-center items-center hidden" id="modal-overlay">
+        <div class="font-serif bg-white rounded-3xl flex flex-col justify-center items-center py-6" style="width: clamp(19rem, 60vw, 45rem);">
+            <img src="../img/trophy.png" alt="trophy" class="mb-3" style="width: clamp(6rem, 20%, 30rem);">
+            <h2 class="text-gray-900 font-bold mb-3 lg:mb-6" style="font-size: clamp(1.5rem, 4vw, 3rem);">You win!</h2>
+            <button class="btn py-2 px-8 font-bold rounded-xl bg-blue-600 active:bg-blue-500" style="font-size: clamp(1rem, 2vw, 1.5rem);">Play Again</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
